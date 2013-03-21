@@ -1,0 +1,3524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.alarmnet.com/Services/MobileV2/" xmlns:s1="http://services.alarmnet.com/Services/MobileV2/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://services.alarmnet.com/Services/MobileV2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.alarmnet.com/Services/MobileV2/">
+      <s:element name="CreateAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="streetAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zipCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="uiLanguage" type="tns:SupportedLanguage" />
+            <s:element minOccurs="1" maxOccurs="1" name="agreedWithAgreement" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="question1" type="tns:SecretQuestion" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer1" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="question2" type="tns:SecretQuestion" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="question3" type="tns:SecretQuestion" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="SupportedLanguage">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default" />
+          <s:enumeration value="English" />
+          <s:enumeration value="French" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SecretQuestion">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="FirstEmployer" />
+          <s:enumeration value="VacationHome" />
+          <s:enumeration value="EldestChildBirth" />
+          <s:enumeration value="FavoriteRoommate" />
+          <s:enumeration value="HometownHighway" />
+          <s:enumeration value="FirstCar" />
+          <s:enumeration value="BestHighScoolFriend" />
+          <s:enumeration value="HighSchoolMascot" />
+          <s:enumeration value="PaternalGrandfatherFirstName" />
+          <s:enumeration value="Promotion" />
+          <s:enumeration value="FatherMiddleName" />
+          <s:enumeration value="FatherEmployer" />
+          <s:enumeration value="FavoriteCollegeSport" />
+          <s:enumeration value="MotherBorn" />
+          <s:enumeration value="CityCollege" />
+          <s:enumeration value="Phobia" />
+          <s:enumeration value="HairStylist" />
+          <s:enumeration value="RetirePlace" />
+          <s:enumeration value="VacationPlace" />
+          <s:enumeration value="FirstSchool" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateAccountResult" type="tns:CreateAccountResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateAccountResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreateStatus" type="tns:UserCreateStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="WebMethodResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:Results" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Results">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="AuthenticationFailed" />
+          <s:enumeration value="AccountNotActivated" />
+          <s:enumeration value="InvalidSessionID" />
+          <s:enumeration value="InvalidApplicationOrVersion" />
+          <s:enumeration value="DeviceNotFound" />
+          <s:enumeration value="PermissionDenied" />
+          <s:enumeration value="DeviceAlreadyRegisteredToOtherLocation" />
+          <s:enumeration value="DeviceAlreadyRegisteredToOtherAccount" />
+          <s:enumeration value="CannotControlSchedule" />
+          <s:enumeration value="WillSupportSchedule" />
+          <s:enumeration value="LocationNotFoundOrDoesNotBelongToUser" />
+          <s:enumeration value="UserNotFound" />
+          <s:enumeration value="TimeZoneNotDefined" />
+          <s:enumeration value="TooManyAttempt" />
+          <s:enumeration value="AccountAlreadyActivated" />
+          <s:enumeration value="InvalidCountryCode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="UserCreateStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="InvalidUserName" />
+          <s:enumeration value="InvalidPassword" />
+          <s:enumeration value="InvalidQuestion" />
+          <s:enumeration value="InvalidAnswer" />
+          <s:enumeration value="InvalidEmail" />
+          <s:enumeration value="DuplicateUserName" />
+          <s:enumeration value="DuplicateEmail" />
+          <s:enumeration value="UserRejected" />
+          <s:enumeration value="InvalidProviderUserKey" />
+          <s:enumeration value="DuplicateProviderUserKey" />
+          <s:enumeration value="ProviderError" />
+          <s:enumeration value="InvalidCountryCode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="UserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="streetAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="notificationEmails" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeZone" type="tns:TimeZone" />
+            <s:element minOccurs="1" maxOccurs="1" name="useDaylightSavingTime" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="TimeZone">
+        <s:restriction base="s:string">
+          <s:enumeration value="Undefined" />
+          <s:enumeration value="NewFoundland" />
+          <s:enumeration value="Atlantic" />
+          <s:enumeration value="Eastern" />
+          <s:enumeration value="Central" />
+          <s:enumeration value="Mountain" />
+          <s:enumeration value="Pacific" />
+          <s:enumeration value="Alaskan" />
+          <s:enumeration value="Hawaiian" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateLocationResult" type="tns:CreateLocationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateLocationResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LocationName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetUserAddressInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAddressInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserAddressInfoResult" type="tns:GetUserAddressInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetUserAddressInfoResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserAddressInfo" type="tns:UserAddressInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserAddressInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseDayLightSavingTime" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSystemGeoInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemGeoInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemGeoInfoResult" type="tns:GetSystemGeoInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetSystemGeoInfoResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Countries" type="tns:ArrayOfCountryInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCountryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CountryInfo" nillable="true" type="tns:CountryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CountryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="States" type="tns:ArrayOfStateInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStateInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StateInfo" nillable="true" type="tns:StateInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StateInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegisterGateway">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="locationID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="crc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterGatewayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterGatewayResult" type="tns:RegisterGatewayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RegisterGatewayResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RegisterTaskID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AuthenticateUserLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="uiLanguage" type="tns:SupportedLanguage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateUserLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateUserLoginResult" type="tns:AuthenticateLoginResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticateLoginResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ResendAccountActivationEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="uiLanguage" type="tns:SupportedLanguage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResendAccountActivationEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResendAccountActivationEmailResult" type="tns:WebMethodResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KeepAlive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KeepAliveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KeepAliveResult" type="tns:KeepAliveResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="KeepAliveResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LogOff">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOffResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogOffResult" type="tns:LogOffResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LogOffResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetLocations">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocationsResult" type="tns:GetLocationsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetLocationsResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfLocationInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="SiteAlerts" type="tns:ArrayOfSiteAlertMessage" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfLocationInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocationInfo" nillable="true" type="tns:LocationInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocationInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanControl" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentWeather" type="tns:CurrentWeatherInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Thermostats" type="tns:ArrayOfThermostatInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CurrentWeatherInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefined" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsValid" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:WeatherCondition" />
+          <s:element minOccurs="1" maxOccurs="1" name="Temperature" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TempUnit" type="tns:TempUnit" />
+          <s:element minOccurs="1" maxOccurs="1" name="Humidity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhraseKey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="WeatherCondition">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="Sunny" />
+          <s:enumeration value="MostlySunny" />
+          <s:enumeration value="PartlySunny" />
+          <s:enumeration value="IntermittentClouds" />
+          <s:enumeration value="HazySunshine" />
+          <s:enumeration value="MostlyCloudy" />
+          <s:enumeration value="Cloudy" />
+          <s:enumeration value="Dreary" />
+          <s:enumeration value="Fog" />
+          <s:enumeration value="Showers" />
+          <s:enumeration value="MostlyCloudyWithShowers" />
+          <s:enumeration value="PartlySunnyWithShowers" />
+          <s:enumeration value="Thunderstorms" />
+          <s:enumeration value="MostlyCloudyWithThunderShowers" />
+          <s:enumeration value="PartlySunnyWithThunderShowers" />
+          <s:enumeration value="Rain" />
+          <s:enumeration value="Flurries" />
+          <s:enumeration value="MostlyCloudyWithFlurries" />
+          <s:enumeration value="PartlySunnyWithFlurries" />
+          <s:enumeration value="Snow" />
+          <s:enumeration value="MostlyCloudyWithSnow" />
+          <s:enumeration value="Ice" />
+          <s:enumeration value="Sleet" />
+          <s:enumeration value="FreezingRain" />
+          <s:enumeration value="RainAndSnowMixed" />
+          <s:enumeration value="Hot" />
+          <s:enumeration value="Cold" />
+          <s:enumeration value="Windy" />
+          <s:enumeration value="NightClear" />
+          <s:enumeration value="NightMostlyClear" />
+          <s:enumeration value="NightPartlyCloudy" />
+          <s:enumeration value="NightIntermittentClouds" />
+          <s:enumeration value="NightHazy" />
+          <s:enumeration value="NightMostlyCloudy" />
+          <s:enumeration value="NightPartlyCloudyWithShowers" />
+          <s:enumeration value="NightMostlyCloudyWithShowers" />
+          <s:enumeration value="NightPartlyCloudyWithThunderShowers" />
+          <s:enumeration value="NightMostlyCloudyWithThunderShowers" />
+          <s:enumeration value="NightMostlyCloudyWithFlurries" />
+          <s:enumeration value="NightMostlyCloudyWithSnow" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TempUnit">
+        <s:restriction base="s:string">
+          <s:enumeration value="Celsius" />
+          <s:enumeration value="Fahrenheit" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfThermostatInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ThermostatInfo" nillable="true" type="tns:ThermostatInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ThermostatInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ThermostatID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MacID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DomainID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Instance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeviceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserDefinedDeviceName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Upgrading" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThermostatsAlerts" type="tns:ArrayOfThermostatsAlert" />
+          <s:element minOccurs="0" maxOccurs="1" name="UI" type="tns:UIInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fan" type="tns:FanInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Humidification" type="tns:HumidificationInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanControlSchedule" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WillSupportSchedule" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfThermostatsAlert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ThermostatsAlert" nillable="true" type="tns:ThermostatsAlert" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ThermostatsAlert">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDForDismiss" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:AlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AlertMessageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShortText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LongText" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AlertType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ThermostatData" />
+          <s:enumeration value="Communication" />
+          <s:enumeration value="ThermostatFaults" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="UIInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThermostatLocked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutdoorTemp" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DispTemperature" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="HeatSetpoint" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoolSetpoint" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayedUnits" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusHeat" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCool" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HoldUntilCapable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScheduleCapable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VacationHold" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DualSetpointStatus" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HeatNextPeriod" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoolNextPeriod" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HeatLowerSetptLimit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="HeatUpperSetptLimit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoolLowerSetptLimit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoolUpperSetptLimit" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SchedHeatSp" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SchedCoolSp" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemSwitchPosition" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetSwitchAuto" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetSwitchCool" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetSwitchOff" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetSwitchHeat" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetSwitchEmergencyHeat" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetSwitchSouthernAway" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deadband" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutdoorHumidity" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="IndoorHumidity" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Commercial" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FanInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CanControl" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Position" type="tns:FanSwitch" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetAuto" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetCirculate" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanFollowSchedule" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanSetOn" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="FanSwitch">
+        <s:restriction base="s:string">
+          <s:enumeration value="Auto" />
+          <s:enumeration value="On" />
+          <s:enumeration value="Circulate" />
+          <s:enumeration value="FollowSchedule" />
+          <s:enumeration value="Unknown" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HumidificationInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CanControlHumidification" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanControlDehumidification" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HumidificationSetPoint" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="HumidificationUpperLimit" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="HumidificationLowerLimit" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="HumidificationMode" type="tns:HumidificationMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="DehumidificationSetPoint" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="DehumidificationUpperLimit" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="DehumidificationLowerLimit" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="DehumidificationMode" type="tns:HumidificationMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deadband" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="HumidificationMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Off" />
+          <s:enumeration value="Auto" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfSiteAlertMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SiteAlertMessage" nillable="true" type="tns:SiteAlertMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SiteAlertMessage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AlertID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dismissable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetShortLocationInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShortLocationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetShortLocationInfoResult" type="tns:GetShortLocationInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetShortLocationInfoResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfShortLocationInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfShortLocationInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ShortLocationInfo" nillable="true" type="tns:ShortLocationInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ShortLocationInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanControl" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseDayLightSavingTime" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotificationEmails" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVolatileThermostatData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVolatileThermostatDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVolatileThermostatDataResult" type="tns:GetVolatileThermostatDataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetVolatileThermostatDataResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UI" type="tns:UIInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Upgrading" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ThermostatsAlerts" type="tns:ArrayOfThermostatsAlert" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetThermostat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThermostatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetThermostatResult" type="tns:GetThermostatResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetThermostatResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Thermostat" type="tns:ThermostatInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetThermostatUI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThermostatUIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetThermostatUIResult" type="tns:GetThermostatUIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetThermostatUIResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UI" type="tns:UIInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetThermostatFan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThermostatFanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetThermostatFanResult" type="tns:GetThermostatFanResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetThermostatFanResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Fan" type="tns:FanInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetThermostatHumidification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThermostatHumidificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetThermostatHumidificationResult" type="tns:GetThermostatHumidificationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetThermostatHumidificationResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Humidification" type="tns:HumidificationInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetWeatherForecast">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="locationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWeatherForecastResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWeatherForecastResult" type="tns:GetWeatherForecastResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetWeatherForecastResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Forecast" type="tns:ArrayOfForecastDayInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfForecastDayInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ForecastDayInfo" nillable="true" type="tns:ForecastDayInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ForecastDayInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:WeatherCondition" />
+          <s:element minOccurs="1" maxOccurs="1" name="Low" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LowUnit" type="tns:TempUnit" />
+          <s:element minOccurs="1" maxOccurs="1" name="High" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="HighUnit" type="tns:TempUnit" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phrase" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DismissSiteAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="alertID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DismissSiteAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DismissSiteAlertResult" type="tns:WebMethodResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DismissThermostatAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="alertID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DismissThermostatAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DismissThermostatAlertResult" type="tns:WebMethodResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DismissCommunicationAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="alertID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DismissCommunicationAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DismissCommunicationAlertResult" type="tns:WebMethodResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommTaskState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="commTaskID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommTaskStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommTaskStateResult" type="tns:GetCommTaskStateResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetCommTaskStateResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CommTaskID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:TaskState" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="TaskState">
+        <s:restriction base="s:string">
+          <s:enumeration value="Running" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Succeded" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ChangeThermostatUI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeSystemSwitch" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="systemSwitch" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeHeatSetpoint" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="heatSetpoint" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeCoolSetpoint" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="coolSetpoint" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeHeatNextPeriod" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="heatNextPeriod" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeCoolNextPeriod" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="coolNextPeriod" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeStatusHeat" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="statusHeat" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeStatusCool" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="statusCool" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeThermostatUIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeThermostatUIResult" type="tns:ChangeRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ChangeRequestResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CommTaskID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ChangeThermostatFan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fanSwitch" type="tns:FanSwitch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeThermostatFanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeThermostatFanResult" type="tns:ChangeRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeThermostatHumidification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="setHumidificationSetPoint" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="humidificationSetPoint" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="setHumidificationMode" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="humidificationMode" type="tns:HumidificationMode" />
+            <s:element minOccurs="1" maxOccurs="1" name="setDehumidificationSetPoint" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="dehumidificationSetPoint" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="setDehumidificationMode" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="dehumidificationMode" type="tns:HumidificationMode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeThermostatHumidificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeThermostatHumidificationResult" type="tns:ChangeRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetScheduleResult" type="tns:ScheduleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ScheduleResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Schedule" type="tns:ScheduleInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Loading" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ScheduleInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ScheduledPeriods" type="tns:ArrayOfScheduledPeriodInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxNumberOfPeriodsInDay" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayedUnits" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfScheduledPeriodInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ScheduledPeriodInfo" nillable="true" type="tns:ScheduledPeriodInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ScheduledPeriodInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Day" type="tns:Day" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodType" type="tns:PeriodType" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsModified" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsCancelled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HeatSetpoint" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoolSetpoint" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FanSwitch" nillable="true" type="tns:FanSwitch" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Day">
+        <s:restriction base="s:string">
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+          <s:enumeration value="Sunday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PeriodType">
+        <s:restriction base="s:string">
+          <s:enumeration value="WakeOcc1" />
+          <s:enumeration value="LeaveUnocc1" />
+          <s:enumeration value="ReturnOcc2" />
+          <s:enumeration value="SleepUnocc2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ChangeSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleInfo" type="tns:ScheduleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeScheduleResult" type="tns:ScheduleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitScheduleChanges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitScheduleChangesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubmitScheduleChangesResult" type="tns:SubmitScheduleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubmitScheduleResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ChangeRequestResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Schedule" type="tns:ScheduleInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Loading" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CancelScheduleChanges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="thermostatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelScheduleChangesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelScheduleChangesResult" type="tns:ScheduleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSecurityQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSecurityQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSecurityQuestionsResult" type="tns:GetSecurityQuestionsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetSecurityQuestionsResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SecretQuestions" type="tns:ArrayOfSecretQuestion" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSecretQuestion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SecretQuestion" type="tns:SecretQuestion" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResetPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secretQuestion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResetPasswordResult" type="tns:WebMethodResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WiringToolGetThermostats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WiringToolGetThermostatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WiringToolGetThermostatsResult" type="tns:WiringToolThermostatsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WiringToolThermostatsResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Thermostats" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WiringToolGetWireMapWithAnswer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="thermostat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="input" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="answer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="applicationVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WiringToolGetWireMapWithAnswerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WiringToolGetWireMapWithAnswerResult" type="tns:WiringToolWireMapResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WiringToolWireMapResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:WebMethodResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="WireMapping" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="Narrative" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notation" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Context" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Guidance" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TieBreaker" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TieBreakerAnswers" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateAccountResult" nillable="true" type="tns:CreateAccountResult" />
+      <s:element name="CreateLocationResult" nillable="true" type="tns:CreateLocationResult" />
+      <s:element name="GetUserAddressInfoResult" nillable="true" type="tns:GetUserAddressInfoResult" />
+      <s:element name="GetSystemGeoInfoResult" nillable="true" type="tns:GetSystemGeoInfoResult" />
+      <s:element name="RegisterGatewayResult" nillable="true" type="tns:RegisterGatewayResult" />
+      <s:element name="AuthenticateLoginResult" nillable="true" type="tns:AuthenticateLoginResult" />
+      <s:element name="WebMethodResult" nillable="true" type="tns:WebMethodResult" />
+      <s:element name="KeepAliveResult" nillable="true" type="tns:KeepAliveResult" />
+      <s:element name="LogOffResult" nillable="true" type="tns:LogOffResult" />
+      <s:element name="GetLocationsResult" nillable="true" type="tns:GetLocationsResult" />
+      <s:element name="GetShortLocationInfoResult" nillable="true" type="tns:GetShortLocationInfoResult" />
+      <s:element name="GetVolatileThermostatDataResult" nillable="true" type="tns:GetVolatileThermostatDataResult" />
+      <s:element name="GetThermostatResult" nillable="true" type="tns:GetThermostatResult" />
+      <s:element name="GetThermostatUIResult" nillable="true" type="tns:GetThermostatUIResult" />
+      <s:element name="GetThermostatFanResult" nillable="true" type="tns:GetThermostatFanResult" />
+      <s:element name="GetThermostatHumidificationResult" nillable="true" type="tns:GetThermostatHumidificationResult" />
+      <s:element name="GetWeatherForecastResult" nillable="true" type="tns:GetWeatherForecastResult" />
+      <s:element name="GetCommTaskStateResult" nillable="true" type="tns:GetCommTaskStateResult" />
+      <s:element name="ChangeRequestResult" nillable="true" type="tns:ChangeRequestResult" />
+      <s:element name="ScheduleResult" nillable="true" type="tns:ScheduleResult" />
+      <s:element name="SubmitScheduleResult" nillable="true" type="tns:SubmitScheduleResult" />
+      <s:element name="GetSecurityQuestionsResult" nillable="true" type="tns:GetSecurityQuestionsResult" />
+      <s:element name="WiringToolThermostatsResult" nillable="true" type="tns:WiringToolThermostatsResult" />
+      <s:element name="WiringToolWireMapResult" nillable="true" type="tns:WiringToolWireMapResult" />
+    </s:schema>
+    <s:schema targetNamespace="http://services.alarmnet.com/Services/MobileV2/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAccount" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateLocation" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAddressInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserAddressInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAddressInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserAddressInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGeoInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemGeoInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGeoInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemGeoInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterGatewaySoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterGateway" />
+  </wsdl:message>
+  <wsdl:message name="RegisterGatewaySoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterGatewayResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserLogin" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResendAccountActivationEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:ResendAccountActivationEmail" />
+  </wsdl:message>
+  <wsdl:message name="ResendAccountActivationEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:ResendAccountActivationEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="KeepAliveSoapIn">
+    <wsdl:part name="parameters" element="tns:KeepAlive" />
+  </wsdl:message>
+  <wsdl:message name="KeepAliveSoapOut">
+    <wsdl:part name="parameters" element="tns:KeepAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogOffSoapIn">
+    <wsdl:part name="parameters" element="tns:LogOff" />
+  </wsdl:message>
+  <wsdl:message name="LogOffSoapOut">
+    <wsdl:part name="parameters" element="tns:LogOffResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocations" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetShortLocationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShortLocationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetShortLocationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShortLocationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVolatileThermostatDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVolatileThermostatData" />
+  </wsdl:message>
+  <wsdl:message name="GetVolatileThermostatDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVolatileThermostatDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatSoapIn">
+    <wsdl:part name="parameters" element="tns:GetThermostat" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatSoapOut">
+    <wsdl:part name="parameters" element="tns:GetThermostatResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatUISoapIn">
+    <wsdl:part name="parameters" element="tns:GetThermostatUI" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatUISoapOut">
+    <wsdl:part name="parameters" element="tns:GetThermostatUIResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatFanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetThermostatFan" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatFanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetThermostatFanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHumidificationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetThermostatHumidification" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHumidificationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetThermostatHumidificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherForecastSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWeatherForecast" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherForecastSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWeatherForecastResponse" />
+  </wsdl:message>
+  <wsdl:message name="DismissSiteAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:DismissSiteAlert" />
+  </wsdl:message>
+  <wsdl:message name="DismissSiteAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:DismissSiteAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="DismissThermostatAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:DismissThermostatAlert" />
+  </wsdl:message>
+  <wsdl:message name="DismissThermostatAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:DismissThermostatAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="DismissCommunicationAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:DismissCommunicationAlert" />
+  </wsdl:message>
+  <wsdl:message name="DismissCommunicationAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:DismissCommunicationAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommTaskStateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommTaskState" />
+  </wsdl:message>
+  <wsdl:message name="GetCommTaskStateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommTaskStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatUISoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeThermostatUI" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatUISoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeThermostatUIResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatFanSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeThermostatFan" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatFanSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeThermostatFanResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatHumidificationSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeThermostatHumidification" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatHumidificationSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeThermostatHumidificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeSchedule" />
+  </wsdl:message>
+  <wsdl:message name="ChangeScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitScheduleChangesSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitScheduleChanges" />
+  </wsdl:message>
+  <wsdl:message name="SubmitScheduleChangesSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitScheduleChangesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelScheduleChangesSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelScheduleChanges" />
+  </wsdl:message>
+  <wsdl:message name="CancelScheduleChangesSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelScheduleChangesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSecurityQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSecurityQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetThermostatsSoapIn">
+    <wsdl:part name="parameters" element="tns:WiringToolGetThermostats" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetThermostatsSoapOut">
+    <wsdl:part name="parameters" element="tns:WiringToolGetThermostatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetWireMapWithAnswerSoapIn">
+    <wsdl:part name="parameters" element="tns:WiringToolGetWireMapWithAnswer" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetWireMapWithAnswerSoapOut">
+    <wsdl:part name="parameters" element="tns:WiringToolGetWireMapWithAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="countryCode" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="zipCode" type="s:string" />
+    <wsdl:part name="uiLanguage" type="s:string" />
+    <wsdl:part name="agreedWithAgreement" type="s:string" />
+    <wsdl:part name="question1" type="s:string" />
+    <wsdl:part name="answer1" type="s:string" />
+    <wsdl:part name="question2" type="s:string" />
+    <wsdl:part name="answer2" type="s:string" />
+    <wsdl:part name="question3" type="s:string" />
+    <wsdl:part name="answer3" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpGetOut">
+    <wsdl:part name="Body" element="tns:CreateAccountResult" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocationHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="type" type="s:string" />
+    <wsdl:part name="countryCode" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="zipCode" type="s:string" />
+    <wsdl:part name="notificationEmails" type="s:string" />
+    <wsdl:part name="timeZone" type="s:string" />
+    <wsdl:part name="useDaylightSavingTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocationHttpGetOut">
+    <wsdl:part name="Body" element="tns:CreateLocationResult" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAddressInfoHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAddressInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetUserAddressInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGeoInfoHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGeoInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetSystemGeoInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="RegisterGatewayHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="locationID" type="s:string" />
+    <wsdl:part name="mac" type="s:string" />
+    <wsdl:part name="crc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterGatewayHttpGetOut">
+    <wsdl:part name="Body" element="tns:RegisterGatewayResult" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserLoginHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+    <wsdl:part name="uiLanguage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserLoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:AuthenticateLoginResult" />
+  </wsdl:message>
+  <wsdl:message name="ResendAccountActivationEmailHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+    <wsdl:part name="uiLanguage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResendAccountActivationEmailHttpGetOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="KeepAliveHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="KeepAliveHttpGetOut">
+    <wsdl:part name="Body" element="tns:KeepAliveResult" />
+  </wsdl:message>
+  <wsdl:message name="LogOffHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogOffHttpGetOut">
+    <wsdl:part name="Body" element="tns:LogOffResult" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationsHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationsHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetLocationsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetShortLocationInfoHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetShortLocationInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetShortLocationInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="GetVolatileThermostatDataHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVolatileThermostatDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetVolatileThermostatDataResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetThermostatResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatUIHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatUIHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetThermostatUIResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatFanHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatFanHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetThermostatFanResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHumidificationHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHumidificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetThermostatHumidificationResult" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherForecastHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="locationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherForecastHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetWeatherForecastResult" />
+  </wsdl:message>
+  <wsdl:message name="DismissSiteAlertHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="alertID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DismissSiteAlertHttpGetOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="DismissThermostatAlertHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="alertID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DismissThermostatAlertHttpGetOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="DismissCommunicationAlertHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="alertID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DismissCommunicationAlertHttpGetOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="GetCommTaskStateHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="commTaskID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCommTaskStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetCommTaskStateResult" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatUIHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+    <wsdl:part name="changeSystemSwitch" type="s:string" />
+    <wsdl:part name="systemSwitch" type="s:string" />
+    <wsdl:part name="changeHeatSetpoint" type="s:string" />
+    <wsdl:part name="heatSetpoint" type="s:string" />
+    <wsdl:part name="changeCoolSetpoint" type="s:string" />
+    <wsdl:part name="coolSetpoint" type="s:string" />
+    <wsdl:part name="changeHeatNextPeriod" type="s:string" />
+    <wsdl:part name="heatNextPeriod" type="s:string" />
+    <wsdl:part name="changeCoolNextPeriod" type="s:string" />
+    <wsdl:part name="coolNextPeriod" type="s:string" />
+    <wsdl:part name="changeStatusHeat" type="s:string" />
+    <wsdl:part name="statusHeat" type="s:string" />
+    <wsdl:part name="changeStatusCool" type="s:string" />
+    <wsdl:part name="statusCool" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatUIHttpGetOut">
+    <wsdl:part name="Body" element="tns:ChangeRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatFanHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+    <wsdl:part name="fanSwitch" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatFanHttpGetOut">
+    <wsdl:part name="Body" element="tns:ChangeRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatHumidificationHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+    <wsdl:part name="setHumidificationSetPoint" type="s:string" />
+    <wsdl:part name="humidificationSetPoint" type="s:string" />
+    <wsdl:part name="setHumidificationMode" type="s:string" />
+    <wsdl:part name="humidificationMode" type="s:string" />
+    <wsdl:part name="setDehumidificationSetPoint" type="s:string" />
+    <wsdl:part name="dehumidificationSetPoint" type="s:string" />
+    <wsdl:part name="setDehumidificationMode" type="s:string" />
+    <wsdl:part name="dehumidificationMode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatHumidificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ChangeRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ScheduleResult" />
+  </wsdl:message>
+  <wsdl:message name="SubmitScheduleChangesHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitScheduleChangesHttpGetOut">
+    <wsdl:part name="Body" element="tns:SubmitScheduleResult" />
+  </wsdl:message>
+  <wsdl:message name="CancelScheduleChangesHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelScheduleChangesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ScheduleResult" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityQuestionsHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityQuestionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetSecurityQuestionsResult" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="secretQuestion" type="s:string" />
+    <wsdl:part name="answer" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordHttpGetOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetThermostatsHttpGetIn">
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetThermostatsHttpGetOut">
+    <wsdl:part name="Body" element="tns:WiringToolThermostatsResult" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetWireMapWithAnswerHttpGetIn">
+    <wsdl:part name="thermostat" type="s:string" />
+    <wsdl:part name="input" type="s1:StringArray" />
+    <wsdl:part name="answer" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetWireMapWithAnswerHttpGetOut">
+    <wsdl:part name="Body" element="tns:WiringToolWireMapResult" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="countryCode" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="zipCode" type="s:string" />
+    <wsdl:part name="uiLanguage" type="s:string" />
+    <wsdl:part name="agreedWithAgreement" type="s:string" />
+    <wsdl:part name="question1" type="s:string" />
+    <wsdl:part name="answer1" type="s:string" />
+    <wsdl:part name="question2" type="s:string" />
+    <wsdl:part name="answer2" type="s:string" />
+    <wsdl:part name="question3" type="s:string" />
+    <wsdl:part name="answer3" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpPostOut">
+    <wsdl:part name="Body" element="tns:CreateAccountResult" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocationHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="type" type="s:string" />
+    <wsdl:part name="countryCode" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="zipCode" type="s:string" />
+    <wsdl:part name="notificationEmails" type="s:string" />
+    <wsdl:part name="timeZone" type="s:string" />
+    <wsdl:part name="useDaylightSavingTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateLocationHttpPostOut">
+    <wsdl:part name="Body" element="tns:CreateLocationResult" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAddressInfoHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAddressInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetUserAddressInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGeoInfoHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGeoInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetSystemGeoInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="RegisterGatewayHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="locationID" type="s:string" />
+    <wsdl:part name="mac" type="s:string" />
+    <wsdl:part name="crc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RegisterGatewayHttpPostOut">
+    <wsdl:part name="Body" element="tns:RegisterGatewayResult" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserLoginHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+    <wsdl:part name="uiLanguage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserLoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:AuthenticateLoginResult" />
+  </wsdl:message>
+  <wsdl:message name="ResendAccountActivationEmailHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+    <wsdl:part name="uiLanguage" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResendAccountActivationEmailHttpPostOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="KeepAliveHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="KeepAliveHttpPostOut">
+    <wsdl:part name="Body" element="tns:KeepAliveResult" />
+  </wsdl:message>
+  <wsdl:message name="LogOffHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogOffHttpPostOut">
+    <wsdl:part name="Body" element="tns:LogOffResult" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationsHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationsHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetLocationsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetShortLocationInfoHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetShortLocationInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetShortLocationInfoResult" />
+  </wsdl:message>
+  <wsdl:message name="GetVolatileThermostatDataHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVolatileThermostatDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetVolatileThermostatDataResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetThermostatResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatUIHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatUIHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetThermostatUIResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatFanHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatFanHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetThermostatFanResult" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHumidificationHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThermostatHumidificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetThermostatHumidificationResult" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherForecastHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="locationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherForecastHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetWeatherForecastResult" />
+  </wsdl:message>
+  <wsdl:message name="DismissSiteAlertHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="alertID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DismissSiteAlertHttpPostOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="DismissThermostatAlertHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="alertID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DismissThermostatAlertHttpPostOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="DismissCommunicationAlertHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="alertID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DismissCommunicationAlertHttpPostOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="GetCommTaskStateHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="commTaskID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCommTaskStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetCommTaskStateResult" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatUIHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+    <wsdl:part name="changeSystemSwitch" type="s:string" />
+    <wsdl:part name="systemSwitch" type="s:string" />
+    <wsdl:part name="changeHeatSetpoint" type="s:string" />
+    <wsdl:part name="heatSetpoint" type="s:string" />
+    <wsdl:part name="changeCoolSetpoint" type="s:string" />
+    <wsdl:part name="coolSetpoint" type="s:string" />
+    <wsdl:part name="changeHeatNextPeriod" type="s:string" />
+    <wsdl:part name="heatNextPeriod" type="s:string" />
+    <wsdl:part name="changeCoolNextPeriod" type="s:string" />
+    <wsdl:part name="coolNextPeriod" type="s:string" />
+    <wsdl:part name="changeStatusHeat" type="s:string" />
+    <wsdl:part name="statusHeat" type="s:string" />
+    <wsdl:part name="changeStatusCool" type="s:string" />
+    <wsdl:part name="statusCool" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatUIHttpPostOut">
+    <wsdl:part name="Body" element="tns:ChangeRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatFanHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+    <wsdl:part name="fanSwitch" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatFanHttpPostOut">
+    <wsdl:part name="Body" element="tns:ChangeRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatHumidificationHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+    <wsdl:part name="setHumidificationSetPoint" type="s:string" />
+    <wsdl:part name="humidificationSetPoint" type="s:string" />
+    <wsdl:part name="setHumidificationMode" type="s:string" />
+    <wsdl:part name="humidificationMode" type="s:string" />
+    <wsdl:part name="setDehumidificationSetPoint" type="s:string" />
+    <wsdl:part name="dehumidificationSetPoint" type="s:string" />
+    <wsdl:part name="setDehumidificationMode" type="s:string" />
+    <wsdl:part name="dehumidificationMode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeThermostatHumidificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ChangeRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ScheduleResult" />
+  </wsdl:message>
+  <wsdl:message name="SubmitScheduleChangesHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitScheduleChangesHttpPostOut">
+    <wsdl:part name="Body" element="tns:SubmitScheduleResult" />
+  </wsdl:message>
+  <wsdl:message name="CancelScheduleChangesHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="thermostatID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelScheduleChangesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ScheduleResult" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityQuestionsHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityQuestionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetSecurityQuestionsResult" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="secretQuestion" type="s:string" />
+    <wsdl:part name="answer" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResetPasswordHttpPostOut">
+    <wsdl:part name="Body" element="tns:WebMethodResult" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetThermostatsHttpPostIn">
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetThermostatsHttpPostOut">
+    <wsdl:part name="Body" element="tns:WiringToolThermostatsResult" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetWireMapWithAnswerHttpPostIn">
+    <wsdl:part name="thermostat" type="s:string" />
+    <wsdl:part name="input" type="s1:StringArray" />
+    <wsdl:part name="answer" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="applicationVersion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WiringToolGetWireMapWithAnswerHttpPostOut">
+    <wsdl:part name="Body" element="tns:WiringToolWireMapResult" />
+  </wsdl:message>
+  <wsdl:portType name="MobileV2Soap">
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountSoapIn" />
+      <wsdl:output message="tns:CreateAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <wsdl:input message="tns:CreateLocationSoapIn" />
+      <wsdl:output message="tns:CreateLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <wsdl:input message="tns:GetUserAddressInfoSoapIn" />
+      <wsdl:output message="tns:GetUserAddressInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <wsdl:input message="tns:GetSystemGeoInfoSoapIn" />
+      <wsdl:output message="tns:GetSystemGeoInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <wsdl:input message="tns:RegisterGatewaySoapIn" />
+      <wsdl:output message="tns:RegisterGatewaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <wsdl:input message="tns:AuthenticateUserLoginSoapIn" />
+      <wsdl:output message="tns:AuthenticateUserLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <wsdl:input message="tns:ResendAccountActivationEmailSoapIn" />
+      <wsdl:output message="tns:ResendAccountActivationEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <wsdl:input message="tns:KeepAliveSoapIn" />
+      <wsdl:output message="tns:KeepAliveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <wsdl:input message="tns:LogOffSoapIn" />
+      <wsdl:output message="tns:LogOffSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <wsdl:input message="tns:GetLocationsSoapIn" />
+      <wsdl:output message="tns:GetLocationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <wsdl:input message="tns:GetShortLocationInfoSoapIn" />
+      <wsdl:output message="tns:GetShortLocationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <wsdl:input message="tns:GetVolatileThermostatDataSoapIn" />
+      <wsdl:output message="tns:GetVolatileThermostatDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <wsdl:input message="tns:GetThermostatSoapIn" />
+      <wsdl:output message="tns:GetThermostatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <wsdl:input message="tns:GetThermostatUISoapIn" />
+      <wsdl:output message="tns:GetThermostatUISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <wsdl:input message="tns:GetThermostatFanSoapIn" />
+      <wsdl:output message="tns:GetThermostatFanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <wsdl:input message="tns:GetThermostatHumidificationSoapIn" />
+      <wsdl:output message="tns:GetThermostatHumidificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <wsdl:input message="tns:GetWeatherForecastSoapIn" />
+      <wsdl:output message="tns:GetWeatherForecastSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <wsdl:input message="tns:DismissSiteAlertSoapIn" />
+      <wsdl:output message="tns:DismissSiteAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <wsdl:input message="tns:DismissThermostatAlertSoapIn" />
+      <wsdl:output message="tns:DismissThermostatAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <wsdl:input message="tns:DismissCommunicationAlertSoapIn" />
+      <wsdl:output message="tns:DismissCommunicationAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <wsdl:input message="tns:GetCommTaskStateSoapIn" />
+      <wsdl:output message="tns:GetCommTaskStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <wsdl:input message="tns:ChangeThermostatUISoapIn" />
+      <wsdl:output message="tns:ChangeThermostatUISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <wsdl:input message="tns:ChangeThermostatFanSoapIn" />
+      <wsdl:output message="tns:ChangeThermostatFanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <wsdl:input message="tns:ChangeThermostatHumidificationSoapIn" />
+      <wsdl:output message="tns:ChangeThermostatHumidificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <wsdl:input message="tns:GetScheduleSoapIn" />
+      <wsdl:output message="tns:GetScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSchedule">
+      <wsdl:input message="tns:ChangeScheduleSoapIn" />
+      <wsdl:output message="tns:ChangeScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <wsdl:input message="tns:SubmitScheduleChangesSoapIn" />
+      <wsdl:output message="tns:SubmitScheduleChangesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <wsdl:input message="tns:CancelScheduleChangesSoapIn" />
+      <wsdl:output message="tns:CancelScheduleChangesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <wsdl:input message="tns:GetSecurityQuestionsSoapIn" />
+      <wsdl:output message="tns:GetSecurityQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input message="tns:ResetPasswordSoapIn" />
+      <wsdl:output message="tns:ResetPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <wsdl:input message="tns:WiringToolGetThermostatsSoapIn" />
+      <wsdl:output message="tns:WiringToolGetThermostatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <wsdl:input message="tns:WiringToolGetWireMapWithAnswerSoapIn" />
+      <wsdl:output message="tns:WiringToolGetWireMapWithAnswerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MobileV2HttpGet">
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountHttpGetIn" />
+      <wsdl:output message="tns:CreateAccountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <wsdl:input message="tns:CreateLocationHttpGetIn" />
+      <wsdl:output message="tns:CreateLocationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <wsdl:input message="tns:GetUserAddressInfoHttpGetIn" />
+      <wsdl:output message="tns:GetUserAddressInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <wsdl:input message="tns:GetSystemGeoInfoHttpGetIn" />
+      <wsdl:output message="tns:GetSystemGeoInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <wsdl:input message="tns:RegisterGatewayHttpGetIn" />
+      <wsdl:output message="tns:RegisterGatewayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <wsdl:input message="tns:AuthenticateUserLoginHttpGetIn" />
+      <wsdl:output message="tns:AuthenticateUserLoginHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <wsdl:input message="tns:ResendAccountActivationEmailHttpGetIn" />
+      <wsdl:output message="tns:ResendAccountActivationEmailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <wsdl:input message="tns:KeepAliveHttpGetIn" />
+      <wsdl:output message="tns:KeepAliveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <wsdl:input message="tns:LogOffHttpGetIn" />
+      <wsdl:output message="tns:LogOffHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <wsdl:input message="tns:GetLocationsHttpGetIn" />
+      <wsdl:output message="tns:GetLocationsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <wsdl:input message="tns:GetShortLocationInfoHttpGetIn" />
+      <wsdl:output message="tns:GetShortLocationInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <wsdl:input message="tns:GetVolatileThermostatDataHttpGetIn" />
+      <wsdl:output message="tns:GetVolatileThermostatDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <wsdl:input message="tns:GetThermostatHttpGetIn" />
+      <wsdl:output message="tns:GetThermostatHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <wsdl:input message="tns:GetThermostatUIHttpGetIn" />
+      <wsdl:output message="tns:GetThermostatUIHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <wsdl:input message="tns:GetThermostatFanHttpGetIn" />
+      <wsdl:output message="tns:GetThermostatFanHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <wsdl:input message="tns:GetThermostatHumidificationHttpGetIn" />
+      <wsdl:output message="tns:GetThermostatHumidificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <wsdl:input message="tns:GetWeatherForecastHttpGetIn" />
+      <wsdl:output message="tns:GetWeatherForecastHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <wsdl:input message="tns:DismissSiteAlertHttpGetIn" />
+      <wsdl:output message="tns:DismissSiteAlertHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <wsdl:input message="tns:DismissThermostatAlertHttpGetIn" />
+      <wsdl:output message="tns:DismissThermostatAlertHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <wsdl:input message="tns:DismissCommunicationAlertHttpGetIn" />
+      <wsdl:output message="tns:DismissCommunicationAlertHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <wsdl:input message="tns:GetCommTaskStateHttpGetIn" />
+      <wsdl:output message="tns:GetCommTaskStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <wsdl:input message="tns:ChangeThermostatUIHttpGetIn" />
+      <wsdl:output message="tns:ChangeThermostatUIHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <wsdl:input message="tns:ChangeThermostatFanHttpGetIn" />
+      <wsdl:output message="tns:ChangeThermostatFanHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <wsdl:input message="tns:ChangeThermostatHumidificationHttpGetIn" />
+      <wsdl:output message="tns:ChangeThermostatHumidificationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <wsdl:input message="tns:GetScheduleHttpGetIn" />
+      <wsdl:output message="tns:GetScheduleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <wsdl:input message="tns:SubmitScheduleChangesHttpGetIn" />
+      <wsdl:output message="tns:SubmitScheduleChangesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <wsdl:input message="tns:CancelScheduleChangesHttpGetIn" />
+      <wsdl:output message="tns:CancelScheduleChangesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <wsdl:input message="tns:GetSecurityQuestionsHttpGetIn" />
+      <wsdl:output message="tns:GetSecurityQuestionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input message="tns:ResetPasswordHttpGetIn" />
+      <wsdl:output message="tns:ResetPasswordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <wsdl:input message="tns:WiringToolGetThermostatsHttpGetIn" />
+      <wsdl:output message="tns:WiringToolGetThermostatsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <wsdl:input message="tns:WiringToolGetWireMapWithAnswerHttpGetIn" />
+      <wsdl:output message="tns:WiringToolGetWireMapWithAnswerHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MobileV2HttpPost">
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountHttpPostIn" />
+      <wsdl:output message="tns:CreateAccountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <wsdl:input message="tns:CreateLocationHttpPostIn" />
+      <wsdl:output message="tns:CreateLocationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <wsdl:input message="tns:GetUserAddressInfoHttpPostIn" />
+      <wsdl:output message="tns:GetUserAddressInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <wsdl:input message="tns:GetSystemGeoInfoHttpPostIn" />
+      <wsdl:output message="tns:GetSystemGeoInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <wsdl:input message="tns:RegisterGatewayHttpPostIn" />
+      <wsdl:output message="tns:RegisterGatewayHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <wsdl:input message="tns:AuthenticateUserLoginHttpPostIn" />
+      <wsdl:output message="tns:AuthenticateUserLoginHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <wsdl:input message="tns:ResendAccountActivationEmailHttpPostIn" />
+      <wsdl:output message="tns:ResendAccountActivationEmailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <wsdl:input message="tns:KeepAliveHttpPostIn" />
+      <wsdl:output message="tns:KeepAliveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <wsdl:input message="tns:LogOffHttpPostIn" />
+      <wsdl:output message="tns:LogOffHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <wsdl:input message="tns:GetLocationsHttpPostIn" />
+      <wsdl:output message="tns:GetLocationsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <wsdl:input message="tns:GetShortLocationInfoHttpPostIn" />
+      <wsdl:output message="tns:GetShortLocationInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <wsdl:input message="tns:GetVolatileThermostatDataHttpPostIn" />
+      <wsdl:output message="tns:GetVolatileThermostatDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <wsdl:input message="tns:GetThermostatHttpPostIn" />
+      <wsdl:output message="tns:GetThermostatHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <wsdl:input message="tns:GetThermostatUIHttpPostIn" />
+      <wsdl:output message="tns:GetThermostatUIHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <wsdl:input message="tns:GetThermostatFanHttpPostIn" />
+      <wsdl:output message="tns:GetThermostatFanHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <wsdl:input message="tns:GetThermostatHumidificationHttpPostIn" />
+      <wsdl:output message="tns:GetThermostatHumidificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <wsdl:input message="tns:GetWeatherForecastHttpPostIn" />
+      <wsdl:output message="tns:GetWeatherForecastHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <wsdl:input message="tns:DismissSiteAlertHttpPostIn" />
+      <wsdl:output message="tns:DismissSiteAlertHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <wsdl:input message="tns:DismissThermostatAlertHttpPostIn" />
+      <wsdl:output message="tns:DismissThermostatAlertHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <wsdl:input message="tns:DismissCommunicationAlertHttpPostIn" />
+      <wsdl:output message="tns:DismissCommunicationAlertHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <wsdl:input message="tns:GetCommTaskStateHttpPostIn" />
+      <wsdl:output message="tns:GetCommTaskStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <wsdl:input message="tns:ChangeThermostatUIHttpPostIn" />
+      <wsdl:output message="tns:ChangeThermostatUIHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <wsdl:input message="tns:ChangeThermostatFanHttpPostIn" />
+      <wsdl:output message="tns:ChangeThermostatFanHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <wsdl:input message="tns:ChangeThermostatHumidificationHttpPostIn" />
+      <wsdl:output message="tns:ChangeThermostatHumidificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <wsdl:input message="tns:GetScheduleHttpPostIn" />
+      <wsdl:output message="tns:GetScheduleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <wsdl:input message="tns:SubmitScheduleChangesHttpPostIn" />
+      <wsdl:output message="tns:SubmitScheduleChangesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <wsdl:input message="tns:CancelScheduleChangesHttpPostIn" />
+      <wsdl:output message="tns:CancelScheduleChangesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <wsdl:input message="tns:GetSecurityQuestionsHttpPostIn" />
+      <wsdl:output message="tns:GetSecurityQuestionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input message="tns:ResetPasswordHttpPostIn" />
+      <wsdl:output message="tns:ResetPasswordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <wsdl:input message="tns:WiringToolGetThermostatsHttpPostIn" />
+      <wsdl:output message="tns:WiringToolGetThermostatsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <wsdl:input message="tns:WiringToolGetWireMapWithAnswerHttpPostIn" />
+      <wsdl:output message="tns:WiringToolGetWireMapWithAnswerHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MobileV2Soap" type="tns:MobileV2Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateAccount">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/CreateLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetUserAddressInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetSystemGeoInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/RegisterGateway" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/AuthenticateUserLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ResendAccountActivationEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/KeepAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/LogOff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetLocations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetShortLocationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetVolatileThermostatData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostatUI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostatFan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostatHumidification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetWeatherForecast" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/DismissSiteAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/DismissThermostatAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/DismissCommunicationAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetCommTaskState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeThermostatUI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeThermostatFan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeThermostatHumidification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSchedule">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/SubmitScheduleChanges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/CancelScheduleChanges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetSecurityQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/WiringToolGetThermostats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <soap:operation soapAction="http://services.alarmnet.com/Services/MobileV2/WiringToolGetWireMapWithAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MobileV2Soap12" type="tns:MobileV2Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateAccount">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/CreateLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetUserAddressInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetSystemGeoInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/RegisterGateway" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/AuthenticateUserLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ResendAccountActivationEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/KeepAlive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/LogOff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetLocations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetShortLocationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetVolatileThermostatData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostatUI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostatFan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetThermostatHumidification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetWeatherForecast" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/DismissSiteAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/DismissThermostatAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/DismissCommunicationAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetCommTaskState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeThermostatUI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeThermostatFan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeThermostatHumidification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeSchedule">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ChangeSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/SubmitScheduleChanges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/CancelScheduleChanges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/GetSecurityQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/WiringToolGetThermostats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <soap12:operation soapAction="http://services.alarmnet.com/Services/MobileV2/WiringToolGetWireMapWithAnswer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MobileV2HttpGet" type="tns:MobileV2HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CreateAccount">
+      <http:operation location="/CreateAccount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <http:operation location="/CreateLocation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <http:operation location="/GetUserAddressInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <http:operation location="/GetSystemGeoInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <http:operation location="/RegisterGateway" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <http:operation location="/AuthenticateUserLogin" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <http:operation location="/ResendAccountActivationEmail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <http:operation location="/KeepAlive" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <http:operation location="/LogOff" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <http:operation location="/GetLocations" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <http:operation location="/GetShortLocationInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <http:operation location="/GetVolatileThermostatData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <http:operation location="/GetThermostat" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <http:operation location="/GetThermostatUI" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <http:operation location="/GetThermostatFan" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <http:operation location="/GetThermostatHumidification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <http:operation location="/GetWeatherForecast" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <http:operation location="/DismissSiteAlert" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <http:operation location="/DismissThermostatAlert" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <http:operation location="/DismissCommunicationAlert" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <http:operation location="/GetCommTaskState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <http:operation location="/ChangeThermostatUI" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <http:operation location="/ChangeThermostatFan" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <http:operation location="/ChangeThermostatHumidification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <http:operation location="/GetSchedule" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <http:operation location="/SubmitScheduleChanges" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <http:operation location="/CancelScheduleChanges" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <http:operation location="/GetSecurityQuestions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <http:operation location="/ResetPassword" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <http:operation location="/WiringToolGetThermostats" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <http:operation location="/WiringToolGetWireMapWithAnswer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MobileV2HttpPost" type="tns:MobileV2HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateAccount">
+      <http:operation location="/CreateAccount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLocation">
+      <http:operation location="/CreateLocation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAddressInfo">
+      <http:operation location="/GetUserAddressInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGeoInfo">
+      <http:operation location="/GetSystemGeoInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGateway">
+      <http:operation location="/RegisterGateway" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUserLogin">
+      <http:operation location="/AuthenticateUserLogin" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendAccountActivationEmail">
+      <http:operation location="/ResendAccountActivationEmail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KeepAlive">
+      <http:operation location="/KeepAlive" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <http:operation location="/LogOff" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <http:operation location="/GetLocations" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShortLocationInfo">
+      <http:operation location="/GetShortLocationInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVolatileThermostatData">
+      <http:operation location="/GetVolatileThermostatData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostat">
+      <http:operation location="/GetThermostat" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatUI">
+      <http:operation location="/GetThermostatUI" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatFan">
+      <http:operation location="/GetThermostatFan" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThermostatHumidification">
+      <http:operation location="/GetThermostatHumidification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherForecast">
+      <http:operation location="/GetWeatherForecast" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissSiteAlert">
+      <http:operation location="/DismissSiteAlert" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissThermostatAlert">
+      <http:operation location="/DismissThermostatAlert" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DismissCommunicationAlert">
+      <http:operation location="/DismissCommunicationAlert" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommTaskState">
+      <http:operation location="/GetCommTaskState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatUI">
+      <http:operation location="/ChangeThermostatUI" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatFan">
+      <http:operation location="/ChangeThermostatFan" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeThermostatHumidification">
+      <http:operation location="/ChangeThermostatHumidification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedule">
+      <http:operation location="/GetSchedule" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitScheduleChanges">
+      <http:operation location="/SubmitScheduleChanges" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelScheduleChanges">
+      <http:operation location="/CancelScheduleChanges" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityQuestions">
+      <http:operation location="/GetSecurityQuestions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <http:operation location="/ResetPassword" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetThermostats">
+      <http:operation location="/WiringToolGetThermostats" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WiringToolGetWireMapWithAnswer">
+      <http:operation location="/WiringToolGetWireMapWithAnswer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MobileV2">
+    <wsdl:port name="MobileV2Soap" binding="tns:MobileV2Soap">
+      <soap:address location="https://rs.alarmnet.com/TotalConnectComfort/ws/MobileV2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MobileV2Soap12" binding="tns:MobileV2Soap12">
+      <soap12:address location="https://rs.alarmnet.com/TotalConnectComfort/ws/MobileV2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MobileV2HttpGet" binding="tns:MobileV2HttpGet">
+      <http:address location="https://rs.alarmnet.com/TotalConnectComfort/ws/MobileV2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MobileV2HttpPost" binding="tns:MobileV2HttpPost">
+      <http:address location="https://rs.alarmnet.com/TotalConnectComfort/ws/MobileV2.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
