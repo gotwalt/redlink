@@ -43,5 +43,12 @@ module Redlink
         Configuration.clear!
       end
     end
+
+    def self.locations
+      return unless Configuration.session_id
+      body = endpoint_client.call(:get_locations, message: {sessionID: Configuration.session_id}).body
+
+      body[:get_locations_response][:get_locations_result][:locations]
+    end
   end
 end

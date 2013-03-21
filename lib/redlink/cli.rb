@@ -19,6 +19,16 @@ module Redlink
       Redlink::Endpoint.logout
     end
 
+    desc 'locations', 'places'
+    def locations
+      p Redlink::Endpoint.locations
+    end
+
+    desc 'operations', 'wfasd'
+    def operations
+      p Redlink::Endpoint.endpoint_client.operations
+    end
+
     desc 'session_id SESSION_ID', 'blah'
     def session_id(session_id)
       Redlink::Configuration.session_id = session_id
