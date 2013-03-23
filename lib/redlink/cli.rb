@@ -21,7 +21,19 @@ module Redlink
 
     desc 'locations', 'places'
     def locations
-      p Redlink::Endpoint.locations
+      Redlink::Endpoint.locations.each do |location|
+        s = [location]
+        if location.current_weather
+          s << location.current_weather
+        end
+
+        puts s.join(' - ')
+
+        location.thermostats.each do |thermostat|
+          puts "\t#{thermostat}"
+        end
+
+      end
     end
 
     desc 'operations', 'wfasd'

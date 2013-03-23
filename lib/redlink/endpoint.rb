@@ -4,11 +4,16 @@ module Redlink
   class Endpoint
 
     def self.endpoint_client
-      @endpoint_client ||= Savon.client wsdl: File.expand_path("../../../wsdl/MobileV2.xml", __FILE__)
+      @endpoint_client ||= Savon.client do
+        wsdl File.expand_path("../../../wsdl/MobileV2.xml", __FILE__)
+        log_level :warn
+        log false
+      end
     end
 
-    def self.login(username, password)
-      method = 'AuthenticateUserName'
+    def self.login(username = Configuration.username, password = Configuration.password)
+      raise "A username and password is required" unless username && password
+
       params = {
         username: username,
         password: password,
@@ -45,10 +50,21 @@ module Redlink
     end
 
     def self.locations
-      return unless Configuration.session_id
+      verify_token
+
       body = endpoint_client.call(:get_locations, message: {sessionID: Configuration.session_id}).body
 
-      body[:get_locations_response][:get_locations_result][:locations]
+      [body[:get_locations_response][:get_locations_result][:locations]].flatten.map do |loc|
+        Location.new(loc[:location_info])
+      end
+    end
+
+    private
+
+    def self.verify_token
+      if Configuration.session_expired?
+        login
+      end
     end
   end
 end

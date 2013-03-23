@@ -26,6 +26,10 @@ module Redlink
       end
     end
 
+    def self.session_expired?
+      !config_file['session_id_expires'] && config_file['session_id_expires'] < Time.now
+    end
+
     def self.user
       config_file['user']
     end
