@@ -53,10 +53,17 @@ module Redlink
       verify_token
 
       body = endpoint_client.call(:get_locations, message: {sessionID: Configuration.session_id}).body
-
       [body[:get_locations_response][:get_locations_result][:locations]].flatten.map do |loc|
-        Location.new(loc[:location_info])
+        loc[:location_info]
       end
+    end
+
+    def self.get_volatile_thermostat_data(thermostat_id)
+      verify_token
+
+      body = endpoint_client.call(:get_volatile_thermostat_data, message: {sessionID: Configuration.session_id, thermostatID: thermostat_id}).body
+
+      body[:get_volatile_thermostat_data_response][:get_volatile_thermostat_data_result][:ui]
     end
 
     private
@@ -66,5 +73,6 @@ module Redlink
         login
       end
     end
+
   end
 end

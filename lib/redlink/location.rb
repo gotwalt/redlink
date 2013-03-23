@@ -20,5 +20,19 @@ module Redlink
       name
     end
 
+    def self.all
+      @all ||= Endpoint.locations.map do |loc|
+        Location.new(loc)
+      end
+    end
+
+    def self.first
+      all[0]
+    end
+
+    def self.last
+      all[all.length - 1]
+    end
+
   end
 end

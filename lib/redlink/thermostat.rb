@@ -15,5 +15,9 @@ module Redlink
     def to_s
       "#{name} - #{ui}"
     end
+
+    def refresh
+      @ui = Ui.new Endpoint.get_volatile_thermostat_data(self.thermostat_id)
+    end
   end
 end

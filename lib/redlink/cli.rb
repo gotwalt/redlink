@@ -21,7 +21,7 @@ module Redlink
 
     desc 'locations', 'places'
     def locations
-      Redlink::Endpoint.locations.each do |location|
+      Redlink::Location.all.each do |location|
         s = [location]
         if location.current_weather
           s << location.current_weather
