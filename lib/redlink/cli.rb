@@ -14,7 +14,7 @@ module Redlink
       Redlink::Endpoint.login(username, password)
     end
 
-    desc 'logout', 'srsly'
+    desc 'logout', 'Log the active user out'
     def logout
       Redlink::Endpoint.logout
     end
@@ -34,16 +34,6 @@ module Redlink
         end
 
       end
-    end
-
-    desc 'operations', 'wfasd'
-    def operations
-      p Redlink::Endpoint.endpoint_client.operations
-    end
-
-    desc 'session_id SESSION_ID', 'blah'
-    def session_id(session_id)
-      Redlink::Configuration.session_id = session_id
     end
 
   end
