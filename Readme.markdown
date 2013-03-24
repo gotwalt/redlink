@@ -21,7 +21,7 @@ Basic location & thermostat discovery functional. Ability to refresh thermostat 
 
 Redlink provides a basic CLI experience as well as a growing set of APIs for actual manipulation.
 
-`relink locations` returns a list of locations and thermostats connected to your account.
+`redlink locations` returns a list of locations and thermostats connected to your account.
 
 # TODO
 
