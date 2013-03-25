@@ -1,6 +1,6 @@
 # Redlink
 
-A gem for controlling Honeywell Redlink-based home heating and cooling products.
+A gem providing a ruby API for controlling Honeywell Redlink-based home heating and cooling products.
 
 # Status
 
