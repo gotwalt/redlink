@@ -27,7 +27,8 @@ module Redlink
     end
 
     def self.session_expired?
-      !config_file['session_id_expires'] && config_file['session_id_expires'] < Time.now
+      return true unless config_file['session_id_expires']
+      config_file['session_id_expires'] < Time.now
     end
 
     def self.user
@@ -58,12 +59,19 @@ module Redlink
       File.open(File.expand_path(CONFIG_FILE), 'w+') do |f|
         f.write YAML.dump(@config_file)
       end
+
+      # reset to force reload next time a read happens
+      @config_file = nil
     end
 
     def self.clear!
-      [:session_id, :user, :username, :password].each do |k|
-        self.send("#{k}=", nil)
+      new_config = @config_file.dup
+
+      [:session_id, :session_id_expires, :user, :username, :password].each do |k|
+        new_config.delete(k.to_s)
       end
+
+      @config_file = new_config
       self.save
     end
 

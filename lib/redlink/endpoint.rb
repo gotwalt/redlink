@@ -3,16 +3,8 @@ require 'savon'
 module Redlink
   class Endpoint
 
-    def self.endpoint_client
-      @endpoint_client ||= Savon.client do
-        wsdl File.expand_path("../../../wsdl/MobileV2.xml", __FILE__)
-        log_level :warn
-        log false
-      end
-    end
-
     def self.login(username = Configuration.username, password = Configuration.password)
-      raise "A username and password is required" unless username && password
+      return unless username && password
 
       params = {
         username: username,
@@ -22,11 +14,11 @@ module Redlink
         uiLanguage: 'Default'
       }
 
-      body = endpoint_client.call(:authenticate_user_login, message: params).body
-      p body[:authenticate_user_login_response]
-      if body[:authenticate_user_login_response][:authenticate_user_login_result][:result] == 'Success'
-        user = body[:authenticate_user_login_response][:authenticate_user_login_result][:user_info]
-        session_id = body[:authenticate_user_login_response][:authenticate_user_login_result][:session_id]
+      result = call_remote_method(:authenticate_user_login, message: params)
+
+      if result[:result] == 'Success'
+        user = result[:user_info]
+        session_id = result[:session_id]
 
         Configuration.username = username
         Configuration.password = password
@@ -41,19 +33,16 @@ module Redlink
     end
 
     def self.logout
-      return unless Configuration.session_id
-      body = endpoint_client.call(:log_off, message: {sessionID: Configuration.session_id}).body
-
-      if body[:log_off_response][:log_off_result][:result] == 'Success'
-        Configuration.clear!
+      if Configuration.session_id
+        call_remote_method(:log_off, message: {sessionID: Configuration.session_id})
       end
+
+      Configuration.clear!
     end
 
     def self.locations
-      verify_token
-
-      body = endpoint_client.call(:get_locations, message: {sessionID: Configuration.session_id}).body
-      [body[:get_locations_response][:get_locations_result][:locations]].flatten.map do |loc|
+      result = call_remote_method(:get_locations, message: {sessionID: Configuration.session_id})
+      [result[:locations]].flatten.map do |loc|
         loc[:location_info]
       end
     end
@@ -61,9 +50,9 @@ module Redlink
     def self.get_volatile_thermostat_data(thermostat_id)
       verify_token
 
-      body = endpoint_client.call(:get_volatile_thermostat_data, message: {sessionID: Configuration.session_id, thermostatID: thermostat_id}).body
+      result = call_remote_method(:get_locations, message: {sessionID: Configuration.session_id, thermostatID: thermostat_id})
 
-      body[:get_volatile_thermostat_data_response][:get_volatile_thermostat_data_result][:ui]
+      result[:ui]
     end
 
     private
@@ -74,5 +63,25 @@ module Redlink
       end
     end
 
+    def self.call_remote_method(method, options)
+      verify_token
+      body = endpoint_client.call(method, options).body
+      result = body["#{method}_response".to_sym]["#{method}_result".to_sym]
+      raise InvalidSessionError.new if result[:result] == 'InvalidSessionID'
+      result
+    end
+
+
+    def self.endpoint_client
+      @endpoint_client ||= Savon.client do
+        wsdl File.expand_path("../../../wsdl/MobileV2.xml", __FILE__)
+        log_level :warn
+        log false
+      end
+    end
+
+    class InvalidSessionError < StandardError; end
+    class NoCredentialsError < StandardError; end
   end
+
 end
