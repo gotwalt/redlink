@@ -21,7 +21,18 @@ Basic location & thermostat discovery functional. Ability to refresh thermostat 
 
 Redlink provides a basic CLI experience as well as a growing set of APIs for actual manipulation.
 
-`redlink locations` returns a list of locations and thermostats connected to your account.
+`redlink locations` - returns a list of locations and thermostats connected to your account
+
+```
+redlink$ redlink locations
+
+309 Alden St - 50° NightPartlyCloudy
+  Office - 68° / 62.0°
+  Media Room - 73° / 73.0° (heating via override)
+  Front Room - 69° / 62.0°
+  Dining Room - 70° / 70.0°
+  Bedroom - 74° / 74.0°
+```
 
 # TODO
 
