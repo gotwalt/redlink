@@ -79,7 +79,6 @@ module Redlink
 
     def self.config_file
       return @config_file if @config_file
-
       @config_file = {}
       if File.exists?(path = File.expand_path(CONFIG_FILE))
         begin

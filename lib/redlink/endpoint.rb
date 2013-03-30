@@ -6,7 +6,7 @@ module Redlink
     def self.login(username = Configuration.username, password = Configuration.password)
       return unless username && password
 
-      params = {
+      options = {
         username: username,
         password: password,
         applicationID: Redlink::Configuration.app_token,
@@ -14,7 +14,9 @@ module Redlink
         uiLanguage: 'Default'
       }
 
-      result = call_remote_method(:authenticate_user_login, message: params)
+      method = :authenticate_user_login
+      body = endpoint_client.call(method, message: options).body
+      result = body["#{method}_response".to_sym]["#{method}_result".to_sym]
 
       if result[:result] == 'Success'
         user = result[:user_info]
@@ -75,7 +77,6 @@ module Redlink
     def self.endpoint_client
       @endpoint_client ||= Savon.client do
         wsdl File.expand_path("../../../wsdl/MobileV2.xml", __FILE__)
-        log_level :warn
         log false
       end
     end
