@@ -71,5 +71,9 @@ module Redlink
       "#{disp_temperature.to_i}° / #{heat_setpoint}° #{status}"
     end
 
+    def ==(other_ui)
+      to_s == other_ui.to_s
+    end
+
   end
 end

@@ -55,6 +55,10 @@ module Redlink
       config_file['password'] = val
     end
 
+    def self.logged_in?
+      config_file['username'] && config_file['password']
+    end
+
     def self.save
       File.open(File.expand_path(CONFIG_FILE), 'w+') do |f|
         f.write YAML.dump(@config_file)
