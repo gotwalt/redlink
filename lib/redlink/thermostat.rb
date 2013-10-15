@@ -19,5 +19,9 @@ module Redlink
     def refresh
       @ui = Ui.new Endpoint.get_volatile_thermostat_data(self.thermostat_id)
     end
+
+    def ==(other_thermostat)
+      mac_id == other_thermostat.mac_id
+    end
   end
 end
