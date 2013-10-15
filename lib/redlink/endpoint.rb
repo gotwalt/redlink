@@ -52,7 +52,7 @@ module Redlink
     def self.get_volatile_thermostat_data(thermostat_id)
       verify_token
 
-      result = call_remote_method(:get_locations, message: {sessionID: Configuration.session_id, thermostatID: thermostat_id})
+      result = call_remote_method(:get_volatile_thermostat_data, message: {sessionID: Configuration.session_id, thermostatID: thermostat_id})
 
       result[:ui]
     end
