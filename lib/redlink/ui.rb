@@ -67,12 +67,13 @@ module Redlink
       end
     end
 
-    def to_s
+    def pretty
       "#{disp_temperature.to_i}° / #{heat_setpoint}° #{status}"
     end
 
     def ==(other_ui)
-      to_s == other_ui.to_s
+      return false unless other_ui.respond_to(:pretty)
+      pretty == other_ui.pretty
     end
 
   end

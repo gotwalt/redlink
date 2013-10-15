@@ -30,7 +30,7 @@ module Redlink
         puts s.join(' - ')
 
         location.thermostats.each do |thermostat|
-          puts "\t#{thermostat}"
+          puts "\t#{thermostat.pretty}"
         end
 
       end

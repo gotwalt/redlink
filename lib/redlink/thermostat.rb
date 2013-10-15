@@ -12,8 +12,8 @@ module Redlink
       user_defined_device_name || device_name
     end
 
-    def to_s
-      "#{name} - #{ui}"
+    def pretty
+      "#{name} - #{ui.pretty}"
     end
 
     def refresh
@@ -21,6 +21,7 @@ module Redlink
     end
 
     def ==(other_thermostat)
+      return false unless other_thermostat.respond_to?(:mac_id)
       mac_id == other_thermostat.mac_id
     end
   end
