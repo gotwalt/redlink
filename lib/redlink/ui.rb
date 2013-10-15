@@ -72,7 +72,7 @@ module Redlink
     end
 
     def ==(other_ui)
-      return false unless other_ui.respond_to(:pretty)
+      return false unless other_ui.respond_to?(:pretty)
       pretty == other_ui.pretty
     end
 
